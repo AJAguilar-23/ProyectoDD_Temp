@@ -1,0 +1,30 @@
+{
+  "name": "proyectodd",
+  "version": "1.0.0",
+  "description": "Proyecto Final",
+  "homepage": "https://github.com/AJAguilar-23/ProyectoDD_Temp#readme",
+  "bugs": {
+    "url": "https://github.com/AJAguilar-23/ProyectoDD_Temp/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AJAguilar-23/ProyectoDD_Temp.git"
+  },
+  "license": "ISC",
+  "author": "",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "bcrypt": "^6.0.0",
+    "dotenv": "^17.2.1",
+    "express": "^5.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "mysql2": "^3.14.3",
+    "uuid": "^11.1.0",
+    "zod": "^4.0.17"
+  }
+}
