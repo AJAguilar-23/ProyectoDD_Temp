@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: blog_personal_mysql # Nombre del contenedor adaptado al proyecto
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: unah1234
+      MYSQL_DATABASE: blog_personal_db # Nombre de la base de datos para el proyecto de blog
+      MYSQL_USER: unah
+      MYSQL_PASSWORD: unah1234
+    ports:
+      - "3307:3306" # Mapea el puerto 3307 de tu máquina al 3306 del contenedor
+    volumes:
+      - mysql_data:/var/lib/mysql # Persistencia de datos para MySQL
+      - ./init:/docker-entrypoint-initdb.d # Monta el directorio 'init' para la inicialización de la DB
+volumes:
+  mysql_data: # Define el volumen de datos
