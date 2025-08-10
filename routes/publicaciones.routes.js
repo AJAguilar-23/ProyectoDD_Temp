@@ -7,18 +7,18 @@ import { checkAuthor } from '../middlewares/checkAuthor.js'; // Middleware para 
 
 // Importa tus controladores de publicaciones
 import {
-    getAllPublicaciones,
-    getPublicacionById,
-    createPublicacion,
-    updatePublicacion,
-    deletePublicacion
+    getAllPublic,
+    getById,
+    createPublic,
+    updatePublic,
+    deletePublic
 } from '../controllers/publicaciones.controller.js'; // Asume que tienes estos controladores
 
 // Importa tus controladores de comentarios (pueden estar en un archivo separado o integrados)
 import {
-    getComentariosByPublicacion,
-    createComentario
-} from '../controllers/comentarios_controller.js'; // O integrados en publicaciones.controller.js
+     getComent,
+    createComent
+} from '../controllers/comentarios.controller.js'; // O integrados en publicaciones.controller.js
 
 const publicacionesRouter = Router();
 
@@ -26,32 +26,32 @@ const publicacionesRouter = Router();
 
 // GET /api/publicaciones: Listar todas las publicaciones con paginación [4]
 // Esta ruta es pública y no requiere protección.
-publicacionesRouter.get('/', getAllPublicaciones);
+publicacionesRouter.get('/', getAllPublic);
 
 // GET /api/publicaciones/:id: Ver una publicación específica [4]
 // Esta ruta es pública y no requiere protección.
-publicacionesRouter.get('/:id', getPublicacionById);
+publicacionesRouter.get('/:id', getById);
 
 // POST /api/publicaciones: Crear una nueva publicación [5]
 // Requiere que el usuario esté autenticado.
-publicacionesRouter.post('/', verifyToken, createPublicacion); // [5]
+publicacionesRouter.post('/', verifyToken, createPublic); // [5]
 
 // PUT /api/publicaciones/:id: Editar publicación (solo el autor) [5]
 // Requiere autenticación y el middleware `checkAuthor` para verificar la propiedad.
-publicacionesRouter.put('/:id', verifyToken, checkAuthor, updatePublicacion); // [5, 19]
+publicacionesRouter.put('/:id', verifyToken, checkAuthor, updatePublic); // [5, 19]
 
 // DELETE /api/publicaciones/:id: Eliminar publicación (solo el autor) [5]
 // Requiere autenticación y el middleware `checkAuthor` para verificar la propiedad.
-publicacionesRouter.delete('/:id', verifyToken, checkAuthor, deletePublicacion); // [5, 19]
+publicacionesRouter.delete('/:id', verifyToken, checkAuthor, deletePublic); // [5, 19]
 
 // --- Endpoints de Comentarios (anidados bajo publicaciones) ---
 
 // GET /api/publicaciones/:id/comentarios: Ver todos los comentarios de una publicación [5]
 // Esta ruta es pública.
-publicacionesRouter.get('/:id/comentarios', getComentariosByPublicacion);
+publicacionesRouter.get('/:id/comentarios',  getComent);
 
 // POST /api/publicaciones/:id/comentarios: Comentar en una publicación [19]
 // Requiere que el usuario esté autenticado.
-publicacionesRouter.post('/:id/comentarios', verifyToken, createComentario);
+publicacionesRouter.post('/:id/comentarios', verifyToken, createComent);
 
 export default publicacionesRouter;

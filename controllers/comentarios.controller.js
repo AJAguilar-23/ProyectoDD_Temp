@@ -22,7 +22,7 @@ function sanitizeInput(str) {
  * @description Obtiene todos los comentarios para una publicación específica.
  * @access Pública
  */
-export const getComentariosByPublicacionController = async (req, res) => {
+export const getComent = async (req, res) => {
     const { id: publicacionId } = req.params;
 
     try {
@@ -48,7 +48,7 @@ export const getComentariosByPublicacionController = async (req, res) => {
  * @description Permite a un usuario autenticado comentar en una publicación.
  * @access Privada
  */
-export const createComentarioController = async (req, res) => {
+export const createComent = async (req, res) => {
     const { id: publicacionId } = req.params;
     const { contenido } = req.body;
     const user_id = req.user.id;

@@ -13,7 +13,7 @@ import {
  * @description Lista todas las publicaciones con paginación.
  * @access Pública
  */
-export const getAllPublicacionesController = async (req, res) => {
+export const getAllPublic = async (req, res) => {
     // Obtener parámetros de paginación de la consulta (query) [15]
     const page = parseInt(req.query.page) || 1;
     const limit = parseInt(req.query.limit) || 10;
@@ -48,7 +48,7 @@ export const getAllPublicacionesController = async (req, res) => {
  * @description Obtiene una publicación específica por su ID.
  * @access Pública
  */
-export const getPublicacionByIdController = async (req, res) => {
+export const getById = async (req, res) => {
     const { id } = req.params; // Obtener el ID de la publicación de los parámetros de la ruta [15]
 /*
     if (!uuidv4.validate(id)) { // Validación básica de formato UUID
@@ -88,7 +88,7 @@ export const getPublicacionByIdController = async (req, res) => {
  * @description Crea una nueva publicación.
  * @access Privada (solo usuario autenticado)
  */
-export const createPublicacionController = async (req, res) => {
+export const createPublic = async (req, res) => {
     const { titulo, contenido, imagen_url } = req.body; // Campos del cuerpo de la solicitud [19]
     const author_id = req.user.id; // El ID del autor se obtiene del token JWT verificado por verifyToken [20, 21]
 
@@ -132,7 +132,7 @@ export const createPublicacionController = async (req, res) => {
  * @description Edita una publicación existente (solo el autor).
  * @access Privada (requiere autenticación y verificación de autoría)
  */
-export const updatePublicacionController = async (req, res) => {
+export const updatePublic = async (req, res) => {
     const { id } = req.params; // ID de la publicación a actualizar [22, 23]
     const { titulo, contenido, imagen_url } = req.body; // Nuevos datos de la publicación
     const author_id = req.user.id; // ID del usuario autenticado [20, 24]
@@ -199,7 +199,7 @@ export const updatePublicacionController = async (req, res) => {
  * @description Elimina una publicación (solo el autor).
  * @access Privada (requiere autenticación y verificación de autoría)
  */
-export const deletePublicacionController = async (req, res) => {
+export const deletePublic = async (req, res) => {
     const { id } = req.params; // ID de la publicación a eliminar [22, 27]
     const author_id = req.user.id; // ID del usuario autenticado [20, 24]
 /*

@@ -3,7 +3,7 @@ import cors from 'cors';
 import dotenv from 'dotenv'
 
 import authRoutes from './routes/auth.routes.js'; // Rutas para autenticación [3, 6, 7]
-import publicacionesRoutes from './routes/publicacionesroutes.js'; // Rutas para publicaciones [7, 8]
+import publicacionesRoutes from './routes/publicaciones.routes.js'; // Rutas para publicaciones [7, 8]
 
 
 const app = express()
