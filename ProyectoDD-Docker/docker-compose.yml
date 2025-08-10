@@ -11,7 +11,7 @@ services:
       MYSQL_USER: unah
       MYSQL_PASSWORD: unah1234
     ports:
-      - "3307:3306"
+      - "3310:3306"
     volumes:
       - mysql_data3:/var/lib/mysql
       - ./init:/docker-entrypoint-initdb.d
