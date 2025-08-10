@@ -99,7 +99,7 @@ export const login = async (req, res) => {
         }
 
         // `loginUser` retorna un array, tomamos el primer elemento si existe
-        const user = userData;
+        const user = userData[0];
 
         // Validar que la contraseña sea correcta comparando el hash [4, 6]
         if (!await bcrypt.compare(password, user.password_hash)) {
@@ -176,7 +176,7 @@ export const setPassword = async (req, res) => {
             message: 'Token de autorización no proporcionado o formato incorrecto.'
         });
     }
-    const token = authHeader.split(' ')[6]; // El token es el segundo elemento después de 'Bearer' [5]
+    const token = authHeader.split(' ')[1]; // El token es el segundo elemento después de 'Bearer' [5]
 
     const { old_password, new_password, confirm_password } = req.body;
 

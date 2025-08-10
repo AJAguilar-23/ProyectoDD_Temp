@@ -1,6 +1,6 @@
 # Autenticación
 
-### Registro de usuario
+### Registro de usuario -OK
 # POST /api/auth/register: Registro de usuario [1, 2]
 POST http://localhost:3000/api/auth/register
 Content-Type: application/json
@@ -13,14 +13,14 @@ Content-Type: application/json
   "role": "user"
 }
 
-### Inicio de sesión
+### Inicio de sesión - TODO
 # POST /api/auth/login: Inicio de sesión [1, 2]
 POST http://localhost:3000/api/auth/login
 Content-Type: application/json
 
 {
   "email": "nuevo.usuario@example.com",
-  "password": "passwordSeguro123"
+  "password": "1234"
 }
 
 ### Cambio de contraseña

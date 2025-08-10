@@ -16,7 +16,7 @@ export const verifyToken = (req, res, next) => {
     }
 
     // 3. Extraer el token (formato "Bearer TOKEN") [6]
-    const token = authorization.split(' ')[3];
+    const token = authorization.split(' ')[1];
 
     // 4. Validar y verificar el token JWT [6]
     try {
