@@ -18,6 +18,7 @@ Content-Type: application/json
     "contrasena": "password"
 }
 
+### Crear una publicacion
 POST http://localhost:3000/api/publicaciones
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3VhcmlvX2lkIjoiYjY5YTI4ZmQtYTAwOS00MzUzLWE3N2EtZTNhMzEzZTA4OTZlIiwiaWF0IjoxNzU0ODc0NTU0LCJleHAiOjE3NTQ5MTc3NTR9.wVPARf0dgeGasyKbH7rdx7yMweqeKmvih1BkedoYy_M

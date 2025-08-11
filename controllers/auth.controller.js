@@ -73,7 +73,4 @@ export const loginUsuario = async (req, res) => {
         mensaje: "Usuario autenticado con exito",
         token
     })
-
-
-
 }
