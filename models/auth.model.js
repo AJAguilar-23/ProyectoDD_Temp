@@ -18,3 +18,9 @@ export const registrarUsuarioDB = async(usuario_id, nombre, correo, contrasena) 
     }
     
 }
+
+export const loginUsuarioDB = async (correo) => {
+    const query = "SELECT BIN_TO_UUID(usuario_id) as usuario_id, nombre, correo, contrasena_hash FROM usuarios WHERE correo = ?" 
+    const [results] = await pool.query(query, [correo])
+    return results[0]
+}

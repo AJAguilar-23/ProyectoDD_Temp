@@ -13,3 +13,13 @@ const registroSchema = zod.object({
 export const validarRegistro = (usuario) => {
     return registroSchema.safeParse(usuario)
 }
+
+const loginSchema = zod.object({
+    "correo": zod.email({error: "El correo no es valido"})
+    .max(100, {error: "El correo no puede exceder 100 caracteres"}),
+    "contrasena": zod.string({error: "La contraseña es obligatoria"})
+    })
+
+export const validarLogin = (usuario) => {
+    return loginSchema.safeParse(usuario)
+}
