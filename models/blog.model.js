@@ -15,3 +15,9 @@ export const mostrarPublicacionesDB = async(limite, offset) => {
     const [resultado] = await pool.query(query, [limite, offset])
     return resultado
 }
+
+export const mostrarPublicacionDB = async(id) => {
+    const query = "SELECT titulo, contenido FROM publicaciones WHERE publicacion_id = ?"
+    const [resultado] = await pool.query(query, [id])
+    return resultado[0]
+}

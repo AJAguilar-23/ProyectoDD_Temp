@@ -22,6 +22,9 @@ Content-Type: application/json
 ### Acceder a todas las publicaciones
 GET http://localhost:3000/api/publicaciones?pag=2
 
+### Ver una publicacion especifica
+GET http://localhost:3000/api/publicaciones/69db0d58-7d5d-41b5-a60f-04e142a9e93d
+
 ### Crear una publicacion
 POST http://localhost:3000/api/publicaciones
 Content-Type: application/json

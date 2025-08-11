@@ -4,6 +4,7 @@ import {
 } from '../schemas/blog.schema.js'
 import {
     mostrarPublicacionesDB,
+    mostrarPublicacionDB,
     crearPublicacionDB
 } from '../models/blog.model.js'
 
@@ -32,4 +33,19 @@ export const crearPublicacion = async (req, res) => {
 
     const datos = await crearPublicacionDB(publicacion_id, usuario_id, safeData.titulo, safeData.contenido)
     res.status(200).json({exito: true, message: "Publicacion creada exitosamente"})
+}
+
+export const mostrarPublicacion = async (req, res) => {
+    const {id} = req.params
+
+    const resultado = await mostrarPublicacionDB(id)
+    if (resultado === undefined) {
+        return res.status(400).json({
+            exito: false, 
+            mensaje: "No se ha encontrado la publicacion"
+        })
+    }
+
+    res.status(200).json(resultado)
+
 }
