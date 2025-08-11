@@ -13,28 +13,31 @@ Content-Type: application/json
   "role": "user"
 }
 
-### Inicio de sesión - TODO
+### Inicio de sesión - ok 
 # POST /api/auth/login: Inicio de sesión [1, 2]
 POST http://localhost:3000/api/auth/login
 Content-Type: application/json
 
 {
   "email": "nuevo.usuario@example.com",
-  "password": "1234"
+  "password": "nuevaPasswordSegura"
 }
 
-### Cambio de contraseña
+### Cambio de contraseña ok 
 # PATCH /api/auth/set-password: Cambio de contraseña [3, 4]
-# Este endpoint requiere que el usuario esté autenticado.
+# Este endpoint requiere que el usuario esté autenticado.# Reemplazar con el token JWT obtenido del login
 PATCH http://localhost:3000/api/auth/set-password
 Content-Type: application/json
-Authorization: Bearer YOUR_AUTH_TOKEN_HERE # Reemplazar con el token JWT obtenido del login
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjNjNjJlNzIzLTQ1YzAtNDdlMC05N2UxLWMzMjY5YWVhNmQwMCIsInBhc3N3b3JkX2hhc2giOiIkMmIkMTAkVzB3THpQR3FicS83eHFUdHZ4TjVGLkxiQjlRZ2dwMlBHMmZxYVNRWGxwM3pKYm9tWWdkNWEiLCJpYXQiOjE3NTQ4NTUwNTAsImV4cCI6MTc1NDg1ODY1MH0.oVejHHe7bMdkks8gjK94PwNrfj0R-BbwlUGrP8bsUVk 
 
 {
-  "old_password": "passwordSeguro123",
+  "old_password": "1234",
   "new_password": "nuevaPasswordSegura",
   "confirm_password": "nuevaPasswordSegura"
 }
+
+
+
 
 # Publicaciones
 
@@ -45,54 +48,57 @@ GET http://localhost:3000/api/publicaciones?page=1&limit=10
 
 ### Ver una publicación específica
 # GET /api/publicaciones/:id: Ver una publicación específica [2]
-# Esta ruta es pública y no requiere autenticación.
-GET http://localhost:3000/api/publicaciones/YOUR_PUBLICACION_ID_HERE # Reemplazar con un ID de publicación existente
+# Esta ruta es pública y no requiere autenticación.# Reemplazar con un ID de publicación existente
+GET http://localhost:3000/api/publicaciones/31cb19a7-8d30-46b7-a7fd-cf7efc85b858 
 
 ### Crear una nueva publicación
 # POST /api/publicaciones: Crear una nueva publicación [2, 5]
 # Requiere que el usuario esté autenticado.
 POST http://localhost:3000/api/publicaciones
 Content-Type: application/json
-Authorization: Bearer YOUR_AUTH_TOKEN_HERE # Reemplazar con el token JWT del usuario
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjNjNjJlNzIzLTQ1YzAtNDdlMC05N2UxLWMzMjY5YWVhNmQwMCIsImlhdCI6MTc1NDg3NTI2MSwiZXhwIjoxNzU0OTE4NDYxfQ.5YEq3hokhT_UQsaK78AtHdVRZS1p87bjZe3zGtKHyz4
 
 {
-  "titulo": "Mi Primera Publicación de Blog",
-  "contenido": "Este es el contenido de mi primera publicación. ¡Espero que les guste!",
-  "imagen_url": "https://example.com/imagen_publicacion.jpg"
+  "titulo": "Mi Primera Publicación de Blog4",
+  "contenido": "Este es el contenido de mi primera publicación. ¡Espero que les guste!"
+  //"imagen_url": "https://example.com/imagen_publicacion.jpg"
 }
 
 ### Editar una publicación (solo el autor)
 # PUT /api/publicaciones/:id: Editar publicación (solo el autor) [5]
-# Requiere autenticación y verificación de propiedad.
-PUT http://localhost:3000/api/publicaciones/YOUR_PUBLICACION_ID_HERE # Reemplazar con el ID de la publicación a editar
+# Requiere autenticación y verificación de propiedad. # Reemplazar con el ID de la publicación a editar
+PUT http://localhost:3000/api/publicaciones/31cb19a7-8d30-46b7-a7fd-cf7efc85b858  
 Content-Type: application/json
-Authorization: Bearer YOUR_AUTH_TOKEN_HERE # Reemplazar con el token JWT del autor de la publicación
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjNjNjJlNzIzLTQ1YzAtNDdlMC05N2UxLWMzMjY5YWVhNmQwMCIsImlhdCI6MTc1NDg3NjM5NCwiZXhwIjoxNzU0OTE5NTk0fQ._n3wiOV7jq8uLIvKHWNKRJINS667mhjeUqtouhMEZI4
 
 {
-  "titulo": "Mi Publicación Editada",
-  "contenido": "Este es el contenido actualizado de mi publicación. ¡Ahora es mejor!",
-  "imagen_url": "https://example.com/imagen_publicacion_editada.jpg"
+  "titulo": "Mi Publicación 2 Editada",
+  "contenido": "Este es el contenido actualizado de mi publicación. ¡Ahora es mejor!"
+  //"imagen_url": "https://example.com/imagen_publicacion_editada.jpg"
 }
 
 ### Eliminar una publicación (solo el autor)
 # DELETE /api/publicaciones/:id: Eliminar publicación (solo el autor) [5]
-# Requiere autenticación y verificación de propiedad.
-DELETE http://localhost:3000/api/publicaciones/YOUR_PUBLICACION_ID_HERE # Reemplazar con el ID de la publicación a eliminar
-Authorization: Bearer YOUR_AUTH_TOKEN_HERE # Reemplazar con el token JWT del autor de la publicación
+# Requiere autenticación y verificación de propiedad.# Reemplazar con el ID de la publicación a eliminar
+DELETE http://localhost:3000/api/publicaciones/eeb307f6-bca1-4ef4-94dc-9b33920294be 
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjNjNjJlNzIzLTQ1YzAtNDdlMC05N2UxLWMzMjY5YWVhNmQwMCIsImlhdCI6MTc1NDg3NjM5NCwiZXhwIjoxNzU0OTE5NTk0fQ._n3wiOV7jq8uLIvKHWNKRJINS667mhjeUqtouhMEZI4
+
+
+
 
 # Comentarios
 
 ### Ver todos los comentarios de una publicación
 # GET /api/publicaciones/:id/comentarios: Ver todos los comentarios de una publicación [5, 6]
-# Esta ruta es pública.
-GET http://localhost:3000/api/publicaciones/YOUR_PUBLICACION_ID_HERE/comentarios # Reemplazar con un ID de publicación existente
+# Esta ruta es pública.# Reemplazar con un ID de publicación existente
+GET http://localhost:3000/api/publicaciones/31cb19a7-8d30-46b7-a7fd-cf7efc85b858/comentarios 
 
 ### Comentar en una publicación
 # POST /api/publicaciones/:id/comentarios: Comentar en una publicación [6]
 # Requiere que el usuario esté autenticado.
-POST http://localhost:3000/api/publicaciones/YOUR_PUBLICACION_ID_HERE/comentarios # Reemplazar con el ID de la publicación donde comentar
+POST http://localhost:3000/api/publicaciones/1cb19a7-8d30-46b7-a7fd-cf7efc85b858/comentarios
 Content-Type: application/json
-Authorization: Bearer YOUR_AUTH_TOKEN_HERE # Reemplazar con el token JWT del usuario
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjNjNjJlNzIzLTQ1YzAtNDdlMC05N2UxLWMzMjY5YWVhNmQwMCIsImlhdCI6MTc1NDg3NjM5NCwiZXhwIjoxNzU0OTE5NTk0fQ._n3wiOV7jq8uLIvKHWNKRJINS667mhjeUqtouhMEZI4
 
 {
   "contenido": "¡Excelente publicación! Me ha sido de gran ayuda."

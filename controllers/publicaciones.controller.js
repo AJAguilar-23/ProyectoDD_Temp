@@ -107,8 +107,8 @@ export const createPublic = async (req, res) => {
             id,
             title: titulo,
             content: contenido,
-            author_id,
-            imagen_url: imagen_url || null // `imagen_url` es opcional
+            author_id
+            //imagen_url: imagen_url || null // `imagen_url` es opcional
         };
         await createPublicacion(nuevaPublicacion); // [13]
 
@@ -222,7 +222,11 @@ export const deletePublic = async (req, res) => {
             });
         }
 
-        res.status(204).send(); // 204 No Content para eliminación exitosa sin contenido para devolver [2]
+        return res.status(200).json({
+            success: true,
+            message: 'Publicación eliminada correctamente',
+            data: { id }
+        });
     } catch (error) {
         console.error('Error al eliminar la publicación:', error);
         res.status(500).json({

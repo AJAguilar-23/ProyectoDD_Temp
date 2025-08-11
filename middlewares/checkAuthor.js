@@ -31,7 +31,7 @@ export const checkAuthor = async (req, res, next) => {
             });
         }
 
-        const authorIdFromDb = results.author_id;
+        const authorIdFromDb = results[0].author_id;
 
         // 5. Comparar el ID del usuario del token con el author_id de la publicación [2]
         if (userIdFromToken === authorIdFromDb) {
