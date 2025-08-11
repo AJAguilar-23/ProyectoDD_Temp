@@ -18,9 +18,8 @@ export const isAuth = (req, res, next) => {
 
         const {usuario_id} = jwt.verify(token, process.env.JWT_SECRET)
         req.params.usuario_id = usuario_id
-
-
         next()
+        
     } catch (error) {
 
         return res.status(401).json({

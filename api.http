@@ -18,11 +18,17 @@ Content-Type: application/json
     "contrasena": "password"
 }
 
+
+### Acceder a todas las publicaciones
+GET http://localhost:3000/api/publicaciones?pag=2
+
 ### Crear una publicacion
 POST http://localhost:3000/api/publicaciones
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3VhcmlvX2lkIjoiYjY5YTI4ZmQtYTAwOS00MzUzLWE3N2EtZTNhMzEzZTA4OTZlIiwiaWF0IjoxNzU0ODc0NTU0LCJleHAiOjE3NTQ5MTc3NTR9.wVPARf0dgeGasyKbH7rdx7yMweqeKmvih1BkedoYy_M
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3VhcmlvX2lkIjoiYjY5YTI4ZmQtYTAwOS00MzUzLWE3N2EtZTNhMzEzZTA4OTZlIiwiaWF0IjoxNzU0OTQwOTcyLCJleHAiOjE3NTQ5ODQxNzJ9.IhLdA8Nbt4fS4Hdd63xHRY3pFpFu4-DXhOHFH6dmFp8
 
 { 
-    "publicaciones": "Logre acceder a la ruta protegida"
+    "titulo": "Mi nombre",
+    "contenido": "Me llamo wilson"
 }
+
