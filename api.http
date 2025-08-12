@@ -3,8 +3,8 @@ POST http://localhost:3000/api/auth/register
 Content-Type: application/json
 
 {
-    "nombre": "wilson",
-    "correo": "prueba@gmail.com",
+    "nombre": "jose",
+    "correo": "prueba2@gmail.com",
     "contrasena": "password"
 }
 
@@ -14,13 +14,13 @@ POST http://localhost:3000/api/auth/login
 Content-Type: application/json
 
 {
-    "correo": "prueba@gmail.com",
+    "correo": "prueba2@gmail.com",
     "contrasena": "password"
 }
 
 
 ### Acceder a todas las publicaciones
-GET http://localhost:3000/api/publicaciones?pag=2
+GET http://localhost:3000/api/publicaciones?pag=1
 
 ### Ver una publicacion especifica
 GET http://localhost:3000/api/publicaciones/69db0d58-7d5d-41b5-a60f-04e142a9e93d
@@ -28,10 +28,21 @@ GET http://localhost:3000/api/publicaciones/69db0d58-7d5d-41b5-a60f-04e142a9e93d
 ### Crear una publicacion
 POST http://localhost:3000/api/publicaciones
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3VhcmlvX2lkIjoiYjY5YTI4ZmQtYTAwOS00MzUzLWE3N2EtZTNhMzEzZTA4OTZlIiwiaWF0IjoxNzU0OTQwOTcyLCJleHAiOjE3NTQ5ODQxNzJ9.IhLdA8Nbt4fS4Hdd63xHRY3pFpFu4-DXhOHFH6dmFp8
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3VhcmlvX2lkIjoiYjM2NDViMzYtYTQwMS00MDJkLWFmOWQtYjI3M2U0YjlkMjFhIiwiaWF0IjoxNzU0OTc4NjYwLCJleHAiOjE3NTUwMjE4NjB9.ZTN9tt-MbJVcJuH7hPpqIPlwAUpQWfpOTC7TlHcCdzI
 
 { 
-    "titulo": "Mi nombre",
-    "contenido": "Me llamo wilson"
+    "titulo": "Hola soy Juan",
+    "contenido": "Soy el otro usuario"
+}
+
+### Editar una publicacion especifica
+
+PUT http://localhost:3000/api/publicaciones/69db0d58-7d5d-41b5-a60f-04e142a9e93d
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3VhcmlvX2lkIjoiYjM2NDViMzYtYTQwMS00MDJkLWFmOWQtYjI3M2U0YjlkMjFhIiwiaWF0IjoxNzU0OTc4NjYwLCJleHAiOjE3NTUwMjE4NjB9.ZTN9tt-MbJVcJuH7hPpqIPlwAUpQWfpOTC7TlHcCdzI
+
+{
+    "titulo": "Ultima edicion por Jose",
+    "contenido": "yo se que paso"
 }
 

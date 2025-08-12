@@ -16,8 +16,14 @@ export const mostrarPublicacionesDB = async(limite, offset) => {
     return resultado
 }
 
-export const mostrarPublicacionDB = async(id) => {
-    const query = "SELECT titulo, contenido FROM publicaciones WHERE publicacion_id = ?"
+export const buscarPublicacionDB = async(id) => {
+    const query = "SELECT BIN_TO_UUID(usuario_id) as usuario_id, titulo, contenido FROM publicaciones WHERE publicacion_id = ?"
     const [resultado] = await pool.query(query, [id])
     return resultado[0]
+}
+
+export const editarPublicacionDB = async(id, titulo, contenido) => {
+    const query = "UPDATE publicaciones SET titulo = ?, contenido = ? WHERE publicacion_id = ? "
+    const [resultado] = await pool.query(query, [titulo, contenido, id])
+    return resultado
 }
