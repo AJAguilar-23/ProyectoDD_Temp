@@ -6,9 +6,10 @@ const publicacionSchema = zod.object({
     .min(1, {error: "El titulo no puede estar vacio"})
     .max(60, {error: "El titulo no puede ser mayor de 60 caracteres"})
     .transform(sanitizarEntrada),
+
     "contenido": zod.string({error: "El contenido es obligatorio"})
     .min(1, {error: "El contenido no puede estar vacio"})
-    .max(150, {error: "El contenido no puede ser mayor de 150 caracteres"})
+    .max(1000, {error: "El contenido no puede ser mayor de 1000 caracteres"})
     .transform(sanitizarEntrada),
 }).strict()
 
