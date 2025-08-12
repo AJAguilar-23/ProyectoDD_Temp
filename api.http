@@ -62,5 +62,5 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3VhcmlvX2lkIjoiY
 Content-Type: application/json
 
 {
-    "contenido": "A mi me gusta mas tik tok"
+    "contenido": "La verdad"
 }
