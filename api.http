@@ -23,23 +23,23 @@ Content-Type: application/json
 GET http://localhost:3000/api/publicaciones?pag=1
 
 ### Ver una publicacion especifica
-GET http://localhost:3000/api/publicaciones/69db0d58-7d5d-41b5-a60f-04e142a9e93d
+GET http://localhost:3000/api/publicaciones/d4ecc326-fc3e-4ba2-ae4f-e23e07dd1c2a
 
 ### Crear una publicacion
 POST http://localhost:3000/api/publicaciones
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3VhcmlvX2lkIjoiYjM2NDViMzYtYTQwMS00MDJkLWFmOWQtYjI3M2U0YjlkMjFhIiwiaWF0IjoxNzU0OTc4NjYwLCJleHAiOjE3NTUwMjE4NjB9.ZTN9tt-MbJVcJuH7hPpqIPlwAUpQWfpOTC7TlHcCdzI
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3VhcmlvX2lkIjoiYjM2NDViMzYtYTQwMS00MDJkLWFmOWQtYjI3M2U0YjlkMjFhIiwiaWF0IjoxNzU1MDIyMjQ4LCJleHAiOjE3NTUwNjU0NDh9.Vr50gmsqr7MtwCs3ZLI6nfqg2Wc1xH2ciJu1BTpi3nw
 
 { 
-    "titulo": "Hola soy Juan",
-    "contenido": "Soy el otro usuario"
+    "titulo": "Este es un comentario nuevo",
+    "contenido": "Que macizo, no?"
 }
 
 ### Editar una publicacion especifica
 
-PUT http://localhost:3000/api/publicaciones/69db0d58-7d5d-41b5-a60f-04e142a9e93d
+PUT http://localhost:3000/api/publicaciones/468f313e-127c-4563-a667-b3f14aadfa21
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3VhcmlvX2lkIjoiYjM2NDViMzYtYTQwMS00MDJkLWFmOWQtYjI3M2U0YjlkMjFhIiwiaWF0IjoxNzU0OTc4NjYwLCJleHAiOjE3NTUwMjE4NjB9.ZTN9tt-MbJVcJuH7hPpqIPlwAUpQWfpOTC7TlHcCdzI
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3VhcmlvX2lkIjoiYjM2NDViMzYtYTQwMS00MDJkLWFmOWQtYjI3M2U0YjlkMjFhIiwiaWF0IjoxNzU1MDIyMjQ4LCJleHAiOjE3NTUwNjU0NDh9.Vr50gmsqr7MtwCs3ZLI6nfqg2Wc1xH2ciJu1BTpi3nw
 
 {
     "titulo": "Ultima edicion por Jose",
@@ -50,3 +50,17 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3VhcmlvX2lkIjoiY
 
 DELETE http://localhost:3000/api/publicaciones/d4ecc326-fc3e-4ba2-ae4f-e23e07dd1c2a
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3VhcmlvX2lkIjoiYjY5YTI4ZmQtYTAwOS00MzUzLWE3N2EtZTNhMzEzZTA4OTZlIiwiaWF0IjoxNzU1MDIyMjA5LCJleHAiOjE3NTUwNjU0MDl9.1_Qrwvfvv6--mz6iYqpm1bXKPIiA3iPHKfJkImnoWDQ
+
+### Ver todos los comentarios de una publicacion
+
+GET http://localhost:3000/api/publicaciones/65bd8a46-4989-4ddb-95f4-e319b42b9f27/comentarios
+
+### Comentar en una publicacion
+
+POST http://localhost:3000/api/publicaciones/65bd8a46-4989-4ddb-95f4-e319b42b9f27/comentarios
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3VhcmlvX2lkIjoiYjM2NDViMzYtYTQwMS00MDJkLWFmOWQtYjI3M2U0YjlkMjFhIiwiaWF0IjoxNzU1MDIyMjQ4LCJleHAiOjE3NTUwNjU0NDh9.Vr50gmsqr7MtwCs3ZLI6nfqg2Wc1xH2ciJu1BTpi3nw
+Content-Type: application/json
+
+{
+    "contenido": "A mi me gusta mas tik tok"
+}

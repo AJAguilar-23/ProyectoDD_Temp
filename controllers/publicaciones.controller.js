@@ -1,14 +1,14 @@
 import { v4 as uuidv4 } from 'uuid';
 import {
     validarPublicacion
-} from '../schemas/blog.schema.js'
+} from '../schemas/publicaciones.schema.js'
 import {
     mostrarPublicacionesDB,
     buscarPublicacionDB,
     crearPublicacionDB,
     editarPublicacionDB,
     borrarPublicacionDB
-} from '../models/blog.model.js'
+} from '../models/publicaciones.model.js'
 
 
 export const mostrarPublicaciones = async (req, res) => {

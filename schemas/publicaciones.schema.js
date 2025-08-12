@@ -1,6 +1,6 @@
 import zod from 'zod'
 
-const PublicacionSchema = zod.object({
+const publicacionSchema = zod.object({
     "titulo": zod.string({error: "El titulo es obligatorio"})
     .min(1, {error: "El titulo no puede estar vacio"})
     .max(30, {error: "El titulo no puede ser mayor de 30 caracteres"}),
@@ -10,5 +10,5 @@ const PublicacionSchema = zod.object({
 })
 
 export const validarPublicacion = (data) => {
-    return PublicacionSchema.safeParse(data)
+    return publicacionSchema.safeParse(data)
 }
