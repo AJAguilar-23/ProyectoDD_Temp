@@ -9,7 +9,7 @@ Content-Type: application/json
 }
 
 
-### Hacer login con un usuario existente
+### Hacer login con un usuario
 POST http://localhost:3000/api/auth/login
 Content-Type: application/json
 
@@ -46,3 +46,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3VhcmlvX2lkIjoiY
     "contenido": "yo se que paso"
 }
 
+### Borrar una publicacion
+
+DELETE http://localhost:3000/api/publicaciones/d4ecc326-fc3e-4ba2-ae4f-e23e07dd1c2a
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3VhcmlvX2lkIjoiYjY5YTI4ZmQtYTAwOS00MzUzLWE3N2EtZTNhMzEzZTA4OTZlIiwiaWF0IjoxNzU1MDIyMjA5LCJleHAiOjE3NTUwNjU0MDl9.1_Qrwvfvv6--mz6iYqpm1bXKPIiA3iPHKfJkImnoWDQ

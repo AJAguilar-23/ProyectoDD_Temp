@@ -27,3 +27,9 @@ export const editarPublicacionDB = async(id, titulo, contenido) => {
     const [resultado] = await pool.query(query, [titulo, contenido, id])
     return resultado
 }
+
+export const borrarPublicacionDB = async(id) => {
+    const query = "DELETE FROM publicaciones WHERE publicacion_id = ?"
+    const [resultado] = await pool.query(query, [id])
+    return resultado
+}

@@ -6,7 +6,8 @@ import {
     mostrarPublicacionesDB,
     buscarPublicacionDB,
     crearPublicacionDB,
-    editarPublicacionDB
+    editarPublicacionDB,
+    borrarPublicacionDB
 } from '../models/blog.model.js'
 
 
@@ -75,4 +76,20 @@ export const editarPublicacion = async (req, res) => {
     const resultado = await editarPublicacionDB(id, safeData.titulo, safeData.contenido)
 
     res.status(200).json({exito: true, message: "Publicacion editada exitosamente"})
+}
+
+export const borrarPublicacion = async (req, res) => {
+    const {id} = req.params
+
+    const existePublicacion = await buscarPublicacionDB(id)
+    if (existePublicacion === undefined) {
+        return res.status(400).json({exito: false, message: "No se pudo encontrar la publicacion"})
+    }
+
+    if (existePublicacion.usuario_id != req.params.usuario_id) {
+        return res.status(401).json({exito: false, message: "No tiene permisos para borrar esta publicacion"})
+    }
+    
+    const resultado = await borrarPublicacionDB(id)
+    res.status(200).json({exito: true, message: "Publicacion borrada exitosamente"})
 }

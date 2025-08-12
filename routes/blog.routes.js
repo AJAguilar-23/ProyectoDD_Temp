@@ -3,7 +3,8 @@ import {
     crearPublicacion,
     mostrarPublicaciones,
     mostrarPublicacion,
-    editarPublicacion
+    editarPublicacion,
+    borrarPublicacion
 } from '../controllers/blog.controller.js'
 import {isAuth} from '../middlewares/isAuth.js'
 
@@ -13,5 +14,6 @@ blogRouter.post('/', isAuth, crearPublicacion)
 blogRouter.get('/', mostrarPublicaciones)
 blogRouter.get('/:id', mostrarPublicacion)
 blogRouter.put('/:id', isAuth, editarPublicacion)
+blogRouter.delete('/:id', isAuth, borrarPublicacion)
 
 export default blogRouter
