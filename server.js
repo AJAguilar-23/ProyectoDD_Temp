@@ -2,6 +2,7 @@ import express from 'express'
 import authRoutes from './routes/auth.routes.js'
 import publicacionesRoutes from './routes/publicaciones.routes.js'
 import comentariosRoutes from './routes/comentarios.routes.js'
+import manejadorErrores from './middlewares/manejadorErrores.js'
 
 const app = express()
 
@@ -19,4 +20,6 @@ app.use((req, res) => {
         }
     )
 })
+app.use(manejadorErrores)
+
 app.listen(PORT, () => console.log('Listening on port ' + PORT))

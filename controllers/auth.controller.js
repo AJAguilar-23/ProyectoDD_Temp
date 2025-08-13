@@ -5,17 +5,16 @@ import {validarRegistro, validarLogin} from '../schemas/auth.schema.js'
 
 import {registrarUsuarioDB, loginUsuarioDB} from '../models/auth.model.js'
 
-export const registrarUsuario = async(req, res) => {
+export const registrarUsuario = async(req, res, next) => {
     const usuario_id = uuidv4()
     const data = req.body
 
-    const { success, error, data: safeData } = validarRegistro(data)
+    const { success, error: zodError, data: safeData } = validarRegistro(data)
 
     if (!success) {
-        return res.status(400).json({
-            exito: false,
-            mensaje: error.issues[0].message
-        })
+        const error = new Error(zodError.issues[0].message)
+        error.statusCode = 400
+        return next(error)
     }
    
     const {nombre, correo, contrasena} = safeData
@@ -26,37 +25,36 @@ export const registrarUsuario = async(req, res) => {
         const resultado = await registrarUsuarioDB(usuario_id, nombre, correo, contrasena_hash)
         res.status(201).json({exito: true, mensaje: "Usuario creado con exito"})
     }
-    catch(error) {
-        res.status(400).json({ exito: false, mensaje: error.message });
+    catch(sqlError) {
+        const error = new Error(sqlError.message)
+        error.statusCode = 409
+        return next(error)
     }
 }
 
-export const loginUsuario = async (req, res) => {
+export const loginUsuario = async (req, res, next) => {
     const data = req.body
 
-    const { success, error, data: safeData } = validarLogin(data)
+    const { success, error: zodError, data: safeData } = validarLogin(data)
 
     if (!success) {
-        return res.status(400).json({
-            exito: false,
-            mensaje: error.issues[0].message
-        })
+        const error = new Error(zodError.issues[0].message)
+        error.statusCode = 400
+        return next(error)
     }
 
     const {correo, contrasena} = safeData
     const resultado = await loginUsuarioDB(correo)
 
     if (resultado === undefined) {
-        return res.status(400).json({
-            exito: false, 
-            mensaje: "Correo o contraseña incorrectos"
-        })
+        const error = new Error("Correo o contraseña incorrectos")
+        error.statusCode = 401
+        return next(error)
     }
     if (!await bcrypt.compare(contrasena, resultado.contrasena_hash)) {
-        return res.status(400).json({
-            exito: false,
-            mensaje: 'Correo o contraseña incorrectos'
-        })
+        const error = new Error("Correo o contraseña incorrectos")
+        error.statusCode = 401
+        return next(error)
     }
 
     const payload = {

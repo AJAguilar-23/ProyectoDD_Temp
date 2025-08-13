@@ -3,9 +3,9 @@ import zod from 'zod'
 
 const registroSchema = zod.object({
     "nombre": zod.string({error: "El nombre de usuario es obligatorio"})
-    .refine((val) => {return /^[a-zA-Z0-9_.-]+$/.test(val)}, {error: "El nombre de usuario solo puede contener letras, números, guion bajo, punto y guion medio"})
     .min(3, {error: "El nombre de usuario debe tener al menos 3 caracteres"})
-    .max(20, {error: "El nombre no puede tener mas de 20 caracteres"}),
+    .max(20, {error: "El nombre no puede tener mas de 20 caracteres"})
+    .refine((val) => {return /^[a-zA-Z0-9_.-]+$/.test(val)}, {error: "El nombre de usuario solo puede contener letras, números, guion bajo, punto y guion medio"}),
 
     "correo": zod.email({error: "El correo no es valido"})
     .max(254, {error: "El correo no puede exceder 254 caracteres"}),

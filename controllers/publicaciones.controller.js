@@ -11,66 +11,71 @@ import {
 } from '../models/publicaciones.model.js'
 
 
-export const mostrarPublicaciones = async (req, res) => {
-    const {pag} = req.query
-    const limite = 5
+export const mostrarPublicaciones = async (req, res, next) => {
+    try {
+        const {pag} = req.query
+        const limite = 5
 
-    const offset = (pag - 1) * limite
-    const datos = await mostrarPublicacionesDB(limite, offset)
-    res.status(200).json(datos)
+        const offset = (pag - 1) * limite
+        const datos = await mostrarPublicacionesDB(limite, offset)
+        res.status(200).json(datos)
+    } catch(error) {
+        next(error)
+    }
 }
 
-export const crearPublicacion = async (req, res) => {
+export const crearPublicacion = async (req, res, next) => {
     const data = req.body
     const usuario_id = req.params.usuario_id
     const publicacion_id = uuidv4()
 
-    const { success, error, data: safeData } = validarPublicacion(data)
-        if (!success) {
-            return res.status(400).json({
-                exito: false,
-                mensaje: error.issues[0].message
-            })
-        }
+    const { success, error: zodError, data: safeData } = validarPublicacion(data)
+    if (!success) {
+        const error = new Error(zodError.issues[0].message)
+        error.statusCode = 400
+        return next(error)
+    }
 
     const datos = await crearPublicacionDB(publicacion_id, usuario_id, safeData.titulo, safeData.contenido)
     res.status(200).json({exito: true, message: "Publicacion creada exitosamente"})
 }
 
 
-export const mostrarPublicacion = async (req, res) => {
+export const mostrarPublicacion = async (req, res, next) => {
     const {id} = req.params
 
     const resultado = await buscarPublicacionDB(id)
     if (resultado === undefined) {
-        return res.status(400).json({
-            exito: false, 
-            mensaje: "No se ha encontrado la publicacion"
-        })
+        const error = new Error("No se pudo encontrar la publicacion")
+        error.statusCode = 404
+        return next(error)
     }
     delete resultado.usuario_id
     res.status(200).json(resultado)
 }
 
-export const editarPublicacion = async (req, res) => {
+export const editarPublicacion = async (req, res, next) => {
     const {id} = req.params
     const data = req.body
 
     const existePublicacion = await buscarPublicacionDB(id)
     if (existePublicacion === undefined) {
-        return res.status(400).json({exito: false, message: "No se pudo encontrar la publicacion"})
+        const error = new Error("No se pudo encontrar la publicacion")
+        error.statusCode = 404
+        return next(error)
     }
 
-    const { success, error, data: safeData } = validarPublicacion(data)
+    const { success, error: zodError, data: safeData } = validarPublicacion(data)
         if (!success) {
-            return res.status(400).json({
-                exito: false,
-                mensaje: error.issues[0].message
-            })
+            const error = new Error(zodError.issues[0].message)
+            error.statusCode = 400
+            return next(error)
         }
 
     if (existePublicacion.usuario_id != req.params.usuario_id) {
-        return res.status(401).json({exito: false, message: "No tiene permisos para editar esta publicacion"})
+        const error = new Error("No tiene permisos para editar esta publicacion")
+        error.statusCode = 403
+        return next(error)
     }
     
     const resultado = await editarPublicacionDB(id, safeData.titulo, safeData.contenido)
@@ -78,16 +83,20 @@ export const editarPublicacion = async (req, res) => {
     res.status(200).json({exito: true, message: "Publicacion editada exitosamente"})
 }
 
-export const borrarPublicacion = async (req, res) => {
+export const borrarPublicacion = async (req, res, next) => {
     const {id} = req.params
 
     const existePublicacion = await buscarPublicacionDB(id)
     if (existePublicacion === undefined) {
-        return res.status(400).json({exito: false, message: "No se pudo encontrar la publicacion"})
+        const error = new Error("No se pudo encontrar la publicacion")
+        error.statusCode = 404
+        return next(error)
     }
 
     if (existePublicacion.usuario_id != req.params.usuario_id) {
-        return res.status(401).json({exito: false, message: "No tiene permisos para borrar esta publicacion"})
+        const error = new Error("No tiene permisos para editar esta publicacion")
+        error.statusCode = 403
+        return next(error)
     }
     
     const resultado = await borrarPublicacionDB(id)
